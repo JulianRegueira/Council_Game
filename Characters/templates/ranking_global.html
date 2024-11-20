@@ -1,0 +1,31 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Ranking Global de Héroes</h1>
+
+{% if user_posicion %}
+    <p>Estás en la posición {{ user_posicion }}° en el ranking global.</p>
+{% endif %}
+
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Nivel</th>
+        <th>Experiencia</th>
+        <th>Daño Máximo</th>
+        <th>Armadura</th>
+        <th>Poder Total</th>
+    </tr>
+    {% for heroe in heroes %}
+    <tr>
+        <td>{{ heroe.nombre }}</td>
+        <td>{{ heroe.nivel }}</td>
+        <td>{{ heroe.experiencia }}</td>
+        <td>{{ heroe.daño_maximo }}</td>
+        <td>{{ heroe.armadura }}</td>
+        <td>{{ heroe.ranking_global }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

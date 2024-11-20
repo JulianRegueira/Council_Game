@@ -1,0 +1,49 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú Principal</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Menú Principal</h1>
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+                <button type="button" class="btn btn-danger" style="font-family: dubai; font-weight: bold;">Hola {{ user.username }}</button>
+                <li><a href="{% url 'perfil_heroe' %}">Perfil del Personaje</a></li>
+                <li><a href="{% url 'mostrar_inventario' %}">Inventario</a></li>
+                <li><a href="{% url 'ranking_global' %}">Ranking Global</a></li>
+                <li><a href="{% url 'seleccionar_mapa' %}">Explorar Mapas</a></li>
+                <li><a href="#">Casa de Subastas</a></li>
+                <li><a href="{% url 'vendedor_objetos' 'armas' %}">Vendedor de Armas</a></li>
+                <li><a href="{% url 'vendedor_objetos' 'armaduras' %}">Vendedor de Armaduras</a></li>
+                <li><a href="{% url 'vendedor_objetos' 'joyas' %}">Vendedor de Joyas</a></li>
+                <li><a href="{% url 'vendedor_objetos' 'alimentos' %}">Vendedor de Alimentos</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}" style="font-family: dubai; font-weight: bold;">Cerrar sesión</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'registro' %}">Regístrate</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% if messages %}
+    <div id="message-container" class="messages">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    <footer>
+        <p>&copy; 2024 Council RPG Game</p>
+    </footer>
+</body>
+</html>

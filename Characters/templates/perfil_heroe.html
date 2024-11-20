@@ -1,0 +1,44 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block content %}
+    <h1>Perfil de {{ heroe.nombre }}</h1>
+ {% if messages %}
+    <div id="message-container" class="messages">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+    <p>Nivel: {{ heroe.nivel }}</p>
+    <p>Experiencia: {{ heroe.experiencia }}</p>
+    <p>Raza: {{ heroe.raza }}</p>
+    <p>Oro: {{ heroe.oro }}</p>
+    <p>Puntos de Vida: {{ heroe.vida_actual }} / {{ heroe.puntos_de_vida }}</p>
+    <p>Daño: {{ heroe.daño_minimo }} - {{ heroe.daño_maximo }}</p>
+    <p>Armadura: {{ heroe.armadura }}</p>
+    <p>Energia: {{ heroe.energia }}</p>
+    <h2>Atributos</h2>
+    <ul>
+        <li>Fuerza: {{ heroe.fuerza }}
+            <button onclick="window.location.href='{% url 'mejorar_atributo' 'fuerza' %}'">Mejorar ({{ heroe.costo_mejora_fuerza }} oro)</button>
+        </li>
+        <li>Dextiridad: {{ heroe.dextiridad }}
+            <button onclick="window.location.href='{% url 'mejorar_atributo' 'dextiridad' %}'">Mejorar ({{ heroe.costo_mejora_dextiridad }} oro)</button>
+        </li>
+        <li>Agilidad: {{ heroe.agilidad }}
+            <button onclick="window.location.href='{% url 'mejorar_atributo' 'agilidad' %}'">Mejorar ({{ heroe.costo_mejora_agilidad }} oro)</button>
+        </li>
+        <li>Vida: {{ heroe.vida }}
+            <button onclick="window.location.href='{% url 'mejorar_atributo' 'vida' %}'">Mejorar ({{ heroe.costo_mejora_vida }} oro)</button>
+        </li>
+        <li>Inteligencia: {{ heroe.inteligencia }}
+            <button onclick="window.location.href='{% url 'mejorar_atributo' 'inteligencia' %}'">Mejorar ({{ heroe.costo_mejora_inteligencia }} oro)</button>
+        </li>
+    </ul>
+
+    <a href="/">Volver al Menú Principal</a>
+{% endblock %}
+

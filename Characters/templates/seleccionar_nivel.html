@@ -1,0 +1,16 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Seleccionar Nivel - {{ mapa.nombre }}</h1>
+
+<ul>
+    {% for nivel in niveles %}
+        <li>
+            <a href="{% url 'combatir_enemigo' nivel.id %}">Nivel {{ nivel.numero }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'seleccionar_mapa' %}">Volver a Seleccionar Mapa</a>
+{% endblock %}

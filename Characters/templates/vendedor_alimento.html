@@ -1,0 +1,56 @@
+{% extends "home.html" %}
+
+{% block content %}
+<h1>Vendedor de Alimentos</h1>
+
+<!-- Mensajes de éxito o error -->
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li class="message {{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<!-- Mostrar oro del héroe -->
+<p>Oro disponible: {{ heroe.oro }}</p>
+
+<!-- Lista de alimentos -->
+{% if alimentos %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Disponible</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alimento in alimentos %}
+            <tr>
+                <td>{{ alimento.nombre }}</td>
+                <td>{{ alimento.descripcion }}</td>
+                <td>{{ alimento.costo_oro }}</td>
+                <td>{{ alimento.cantidad_disponible }}</td>
+                <td>
+                    {% if alimento.cantidad_disponible > 0 %}
+                        <form method="post" action="{% url 'comprar_alimento' alimento.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Comprar</button>
+                        </form>
+                    {% else %}
+                        <span>No disponible</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No hay alimentos disponibles en este momento.</p>
+{% endif %}
+
+<a href="{% url 'vendedor_objetos' tipo_vendedor='armas' %}">Visitar el vendedor de objetos</a>
+{% endblock %}

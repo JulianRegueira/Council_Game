@@ -1,0 +1,296 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Inventario de {{ heroe.nombre }}</h1>
+    <p>Nivel: {{ heroe.nivel }}</p>
+    <p>Experiencia: {{ heroe.experiencia }}</p>
+    <p>Raza: {{ heroe.raza }}</p>
+    <p>Oro: {{ heroe.oro }}</p>
+    <p>Puntos de Vida: {{ heroe.vida_actual }} / {{ heroe.puntos_de_vida }}</p>
+    <p>Daño: {{ heroe.daño_minimo }} - {{ heroe.daño_maximo }}</p>
+    <p>Armadura: {{ heroe.armadura }}</p>
+
+<div class="container">
+    <h1>Equipamiento de {{ personaje.nombre }}</h1>
+
+    <!-- Mostrar los objetos equipados en cada slot -->
+    <h2>Equipos Equipados</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Slot</th>
+                <th>Objeto</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Mano Principal -->
+            <tr>
+                <td>Mano Principal</td>
+                <td>
+                    {% if personaje.mano_principal %}
+                        {{ personaje.mano_principal.nombre }}
+                    {% else %}
+                        Ningún objeto equipado
+                    {% endif %}
+                </td>
+                <td>
+                    {% if personaje.mano_principal %}
+                        <a href="{% url 'desequipar_objetos' personaje.mano_principal.id 'Mano principal' %}" class="btn btn-danger btn-sm">Desequipar</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Mano Secundaria -->
+            <tr>
+                <td>Mano Secundaria</td>
+                <td>
+                    {% if personaje.mano_secundaria %}
+                        {{ personaje.mano_secundaria.nombre }}
+                    {% else %}
+                        Ningún objeto equipado
+                    {% endif %}
+                </td>
+                <td>
+                    {% if personaje.mano_secundaria %}
+                        <a href="{% url 'desequipar_objetos' personaje.mano_secundaria.id 'Mano secundaria' %}" class="btn btn-danger btn-sm">Desequipar</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Cabeza -->
+            <tr>
+                <td>Cabeza</td>
+                <td>
+                    {% if personaje.cabeza %}
+                        {{ personaje.cabeza.nombre }}
+                    {% else %}
+                        Ningún objeto equipado
+                    {% endif %}
+                </td>
+                <td>
+                    {% if personaje.cabeza %}
+                        <a href="{% url 'desequipar_objetos' personaje.cabeza.id 'Cabeza' %}" class="btn btn-danger btn-sm">Desequipar</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Torso -->
+            <tr>
+                <td>Torso</td>
+                <td>
+                    {% if personaje.torso %}
+                        {{ personaje.torso.nombre }}
+                    {% else %}
+                        Ningún objeto equipado
+                    {% endif %}
+                </td>
+                <td>
+                    {% if personaje.torso %}
+                        <a href="{% url 'desequipar_objetos' personaje.torso.id 'Torso' %}" class="btn btn-danger btn-sm">Desequipar</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Piernas -->
+            <tr>
+                <td>Piernas</td>
+                <td>
+                    {% if personaje.piernas %}
+                        {{ personaje.piernas.nombre }}
+                    {% else %}
+                        Ningún objeto equipado
+                    {% endif %}
+                </td>
+                <td>
+                    {% if personaje.piernas %}
+                        <a href="{% url 'desequipar_objetos' personaje.piernas.id 'Piernas' %}" class="btn btn-danger btn-sm">Desequipar</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Guantes -->
+            <tr>
+                <td>Guantes</td>
+                <td>
+                    {% if personaje.guantes %}
+                        {{ personaje.guantes.nombre }}
+                    {% else %}
+                        Ningún objeto equipado
+                    {% endif %}
+                </td>
+                <td>
+                    {% if personaje.guantes %}
+                        <a href="{% url 'desequipar_objetos' personaje.guantes.id 'Guantes' %}" class="btn btn-danger btn-sm">Desequipar</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Botas -->
+            <tr>
+                <td>Botas</td>
+                <td>
+                    {% if personaje.botas %}
+                        {{ personaje.botas.nombre }}
+                    {% else %}
+                        Ningún objeto equipado
+                    {% endif %}
+                </td>
+                <td>
+                    {% if personaje.botas %}
+                        <a href="{% url 'desequipar_objetos' personaje.botas.id 'Botas' %}" class="btn btn-danger btn-sm">Desequipar</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Cuello -->
+            <tr>
+                <td>Cuello</td>
+                <td>
+                    {% if personaje.cuello %}
+                        {{ personaje.cuello.nombre }}
+                    {% else %}
+                        Ningún objeto equipado
+                    {% endif %}
+                </td>
+                <td>
+                    {% if personaje.cuello %}
+                        <a href="{% url 'desequipar_objetos' personaje.cuello.id 'Cuello' %}" class="btn btn-danger btn-sm">Desequipar</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Anillo Principal -->
+            <tr>
+                <td>Anillo Principal</td>
+                <td>
+                    {% if personaje.anillo_principal %}
+                        {{ personaje.anillo_principal.nombre }}
+                    {% else %}
+                        Ningún objeto equipado
+                    {% endif %}
+                </td>
+                <td>
+                    {% if personaje.anillo_principal %}
+                        <a href="{% url 'desequipar_objetos' personaje.anillo_principal.id 'Anillo principal' %}" class="btn btn-danger btn-sm">Deseequipar</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Anillo Secundario -->
+            <tr>
+                <td>Anillo Secundario</td>
+                <td>
+                    {% if personaje.anillo_secundario %}
+                        {{ personaje.anillo_secundario.nombre }}
+                    {% else %}
+                        Ningún objeto equipado
+                    {% endif %}
+                </td>
+                <td>
+                    {% if personaje.anillo_secundario %}
+                        <a href="{% url 'desequipar_objetos' personaje.anillo_secundario.id 'Anillo secundario' %}" class="btn btn-danger btn-sm">Desequipar</a>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+    <!-- Mostrar objetos de tipo "Armas" -->
+    <h2>Armas</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for objeto in armas %}
+                <tr>
+                    <td>{{ objeto.nombre }}</td>
+                    <td>{{ objeto.tipo }}</td>
+                    <td>
+                       <a href="{% url 'equipar_objetos' objeto.id objeto.tipo %}" class="btn btn-success btn-sm">Equipar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Mostrar objetos de tipo "Armaduras" -->
+    <h2>Armaduras</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for objeto in armaduras %}
+                <tr>
+                    <td>{{ objeto.nombre }}</td>
+                    <td>{{ objeto.tipo }}</td>
+                    <td>
+                        <a href="{% url 'equipar_objetos' objeto.id objeto.tipo %}" class="btn btn-success btn-sm">Equipar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Mostrar objetos de tipo "Joyas" -->
+    <h2>Joyas</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for objeto in joyas %}
+                <tr>
+                    <td>{{ objeto.nombre }}</td>
+                    <td>{{ objeto.tipo }}</td>
+                    <td>
+                        <a href="{% url 'equipar_objetos' objeto.id objeto.tipo %}" class="btn btn-success btn-sm">Equipar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Mostrar objetos de tipo "Alimentos" -->
+    <h2>Alimentos</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for objeto in alimentos %}
+                <tr>
+                    <td>{{ objeto.nombre }}</td>
+                    <td>{{ objeto.tipo }}</td>
+                    <td>
+                        <a href="{% url 'consumir_objeto' objeto.id %}" class="btn btn-warning btn-sm">Consumir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Seleccionar Mapa</h1>
+
+<ul>
+    {% for mapa in mapas %}
+        <li>
+            <a href="{% url 'seleccionar_nivel' mapa.id %}">{{ mapa.nombre }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'home' %}">Volver al Menú Principal</a>
+{% endblock %}

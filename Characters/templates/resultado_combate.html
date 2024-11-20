@@ -1,0 +1,29 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Resultado del Combate</h1>
+
+<p>Resultado: {{ combate.resultado }}</p>
+<p>Enemigo: {{ enemigo.nombre }}</p>
+
+{% if combate.resultado == 'sin energía' %}
+    <p>No tienes suficiente energía para combatir.</p>
+{% else %}
+    <p>Ahora tienes {{ heroe.experiencia }} puntos de experiencia.</p>
+    <p>Te queda {{ heroe.energia }} de energía.</p>
+
+    <h2>Detalles del Combate</h2>
+    <ul>
+        {% for ronda in combate.detalles_rondas %}
+            <li>
+                <strong>Ronda {{ forloop.counter }}:</strong><br>
+                Héroe inflige {{ ronda.daño_realizado_heroe }} de daño, vida restante del enemigo: {{ ronda.vida_restante_enemigo }}<br>
+                Enemigo inflige {{ ronda.daño_realizado_enemigo }} de daño, vida restante del héroe: {{ ronda.vida_restante_heroe }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<a href="{% url 'seleccionar_mapa' %}">Volver a Seleccionar Mapa</a>
+{% endblock %}

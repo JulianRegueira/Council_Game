@@ -1,0 +1,34 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block content %}
+<p>Oro: {{ heroe.oro }}</p>
+<h1>Vendedor de {{ tipo_vendedor }}</h1>
+
+{% if messages %}
+    <div id="message-container" class="messages">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div id="vendedor">
+    {% if objetos %}
+        <ul>
+            {% for objeto in objetos %}
+                <li>
+                    {{ objeto.nombre }} (Costo: {{ objeto.costo_oro }} oro, Disponibles: {{ objeto.cantidad_disponible }})
+                    <button onclick="window.location.href='{% url 'comprar_objeto' objeto.id %}'">Comprar</button>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay objetos disponibles en este momento.</p>
+    {% endif %}
+</div>
+
+<a href="{% url 'home' %}">Volver al Menú Principal</a>
+{% endblock %}
